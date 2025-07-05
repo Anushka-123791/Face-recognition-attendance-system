@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>AI Attendance</title>
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="{{ url_for('static', filename='favicon_io/favicon.ico') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+  <div id="app">
+    
+    <!-- Page Top -->
+    <div class="header">
+      <h1>AI Attendance Tracker</h1>
+      <p>Face-based attendance system (Beta)</p>
+    </div>
+
+    <div class="main-content">
+
+      <!-- LEFT: Camera Area -->
+      <div class="camera-section">
+        <div class="video-container">
+          <video id="videoElement" autoplay muted playsinline></video>
+          <canvas id="captureCanvas" style="display: none;"></canvas>
+          <div id="captureOverlay" class="overlay"></div>
+        </div>
+
+        <div class="camera-controls">
+          <button id="startCamera" class="btn btn-primary">Start</button>
+          <button id="stopCamera" class="btn btn-secondary" disabled>Stop</button>
+        </div>
+      </div>
+
+      <!-- RIGHT: Form + Status -->
+      <div class="attendance-section">
+
+        <div class="user-info">
+          <h3>User Info</h3>
+          <div class="input-group">
+            <label for="userId">User ID</label>
+            <input type="text" id="userId" placeholder="e.g. 23CS1001">
+          </div>
+
+          <div class="input-group">
+            <label for="userName">Name</label>
+            <input type="text" id="userName" placeholder="Enter your name">
+          </div>
+        </div>
+
+        <div class="capture-section">
+          <button id="captureAttendance" class="btn btn-capture" disabled>
+            📸 Mark Attendance
+          </button>
+        </div>
+
+        <div class="status-section">
+          <div id="statusDisplay" class="status-display">
+            <div id="statusIndicator" class="status-indicator idle"></div>
+            <span id="statusText">Waiting to start...</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- BOTTOM: Attendance List -->
+      <div class="attendance-log">
+        <h3>Recent Attendance</h3>
+        <div id="attendanceList" class="attendance-list">
+          <p class="no-records">Nothing marked yet.</p>
+        </div>
+      </div>
+
+    </div> <!-- /main-content -->
+
+  </div> <!-- /app -->
+
+  <script src="{{ url_for('static', filename='main.js') }}"></script>
+</body>
+</html>
